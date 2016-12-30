@@ -18,3 +18,7 @@ release:
 	git tag `$(PYTHON) setup.py -V`
 	git push
 	git push --tags
+
+clean:
+	rm -rf build dist *.egg-info
+
