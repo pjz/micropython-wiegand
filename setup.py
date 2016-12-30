@@ -32,7 +32,9 @@ setup(
     # What does your project relate to?
     keywords='micropython wiegand keycard',
 
-    # You can just specify the packages manually here if your project is
-    # simple. Or you can use find_packages().
-    packages=['wiegand'],
+    # SemVer
+    version='1.0.0',
+
+    # a single-file module
+    py_modules=['wiegand'],
 )
