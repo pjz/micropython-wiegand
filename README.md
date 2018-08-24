@@ -9,7 +9,7 @@ callbacks based on receiving a card number from a
 ## Example usage:
 
     from wiegand import Wiegand
-    VALID_FACILITY_CODEs = [ '123']
+    VALID_FACILITY_CODES = [ '123']
     VALID_CARDS = [ '12345' ]
 
     GREEN_LED = Pin(...)
