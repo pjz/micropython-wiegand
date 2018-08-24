@@ -33,7 +33,7 @@ setup(
     keywords='micropython wiegand keycard',
 
     # SemVer
-    version='1.0.0',
+    version='1.1.0',
 
     # a single-file module
     py_modules=['wiegand'],
