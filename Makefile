@@ -14,7 +14,7 @@ release:
 		exit 1;\
 	fi
 	$(PYTHON) setup.py bdist_wheel upload
-	$(PYTHON) setup.py sdist --formats=zip,gztar,bztar upload
+	$(PYTHON) setup.py sdist upload
 	git tag `$(PYTHON) setup.py -V`
 	git push
 	git push --tags
