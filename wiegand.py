@@ -8,6 +8,7 @@ from machine import Pin, Timer
 import utime
 
 CARD_MASK = 0b11111111111111110 # 16 ones
+FACILITY_MASK = 0b11111111 # 8 ones
 
 # Max pulse interval: 2ms
 # pulse width: 50us
@@ -52,6 +53,12 @@ class Wiegand:
         if self.last_card is None:
             return None
         return ( self.last_card & CARD_MASK ) >> 1
+        
+    def get_facility_code(self):
+        if self.last_card is None:
+            return None
+        # Specific to standard 26bit wiegand
+        return ( self.last_card >> 17 ) & FACILITY_MASK
 
     def _cardcheck(self, t):
         if self.last_bit_read is None: return
@@ -63,5 +70,4 @@ class Wiegand:
             self.next_card = 0
             self._bits = 0
             self.cards_read += 1
-            self.callback(self.get_card(), self.cards_read)
-
+            self.callback(self.get_card(), self.get_facility_code(), self.cards_read)
