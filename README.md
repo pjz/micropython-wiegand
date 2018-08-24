@@ -9,7 +9,7 @@ callbacks based on receiving a card number from a
 ## Example usage:
 
     from wiegand import Wiegand
-
+    VALID_FACILITY_CODES = [ '123']
     VALID_CARDS = [ '12345' ]
 
     GREEN_LED = Pin(...)
@@ -18,8 +18,8 @@ callbacks based on receiving a card number from a
     WIEGAND_ZERO = XX  # Pin number here
     WIEGAND_ONE = YY   # Pin number here
 
-    def on_card(card_number, cards_read):
-	if card_number in VALID_CARDS:
+    def on_card(card_number, facility_code, cards_read):
+	if (card_number in VALID_CARDS) and (facility_code in VALID_FACILITY_CODES):
 	    GREEN_LED.high()
 	    RED_LED.low()
 	else:
