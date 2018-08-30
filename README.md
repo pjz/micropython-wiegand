@@ -7,7 +7,7 @@ callbacks based on receiving a card number from a
 [weigand-protocol](https://en.wikipedia.org/wiki/Wiegand_interface) reader.
 
 ## Example usage:
-
+```
     from wiegand import Wiegand
     VALID_FACILITY_CODES = [ '123']
     VALID_CARDS = [ '12345' ]
@@ -28,5 +28,5 @@ callbacks based on receiving a card number from a
     
     
     Wiegand(WIEGAND_ZERO, WIEGAND_ONE, on_card)
-
+```
 
