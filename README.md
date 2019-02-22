@@ -4,7 +4,7 @@
 
 This library is essentially the Wiegand class, which allows the user to set
 callbacks based on receiving a card number from a 
-[weigand-protocol](https://en.wikipedia.org/wiki/Wiegand_interface) reader.
+[wiegand-protocol](https://en.wikipedia.org/wiki/Wiegand_interface) reader.
 
 ## Example usage:
 ```python
