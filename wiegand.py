@@ -1,7 +1,7 @@
 """
 weigand.py - read card IDs from a wiegand card reader
 
-(C) 2017 Paul Jimenez - released under LGPLv3+
+(C) 2017, 2022 Paul Jimenez - released under LGPLv3+
 """
 
 from machine import Pin, Timer
@@ -14,10 +14,11 @@ FACILITY_MASK = 0b1111111100000000000000000 # 8 ones
 # pulse width: 50us
 
 class Wiegand:
-    def __init__(self, pin0, pin1, callback):
+    def __init__(self, pin0, pin1, callback, timer_id=-1):
         """
         pin0 - the GPIO that goes high when a zero is sent by the reader
         pin1 - the GPIO that goes high when a one is sent by the reader
+        timer_id - the Timer ID to use for periodic callbacks
         callback - the function called (with two args: card ID and cardcount)
                    when a card is detected.  Note that micropython interrupt
                    implementation limitations apply to the callback!
@@ -31,7 +32,7 @@ class Wiegand:
         self.pin0.irq(trigger=Pin.IRQ_FALLING, handler=self._on_pin0)
         self.pin1.irq(trigger=Pin.IRQ_FALLING, handler=self._on_pin1)
         self.last_bit_read = None
-        self.timer = Timer(-1)
+        self.timer = Timer(timer_id)
         self.timer.init(period=50, mode=Timer.PERIODIC, callback=self._cardcheck)
         self.cards_read = 0
 
@@ -53,7 +54,7 @@ class Wiegand:
         if self.last_card is None:
             return None
         return ( self.last_card & CARD_MASK ) >> 1
-        
+
     def get_facility_code(self):
         if self.last_card is None:
             return None
